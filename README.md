@@ -11,8 +11,9 @@ Sistem pemesanan makanan digital untuk UMKM Warung Salsabila yang terintegrasi d
 1.  **User Ordering (Tanpa Login):** Pelanggan bisa scan QR / buka link, pilih menu, dan pesan langsung tanpa harus mendaftar. (Ala Self-Service Gacoan).
 2.  **Admin Dashboard (Secure):** Halaman khusus admin untuk mengatur menu, melihat pesanan masuk, dan update status pesanan.
 3.  **Real-time Status Sync:** Update status di Admin (Pending -> Processing -> Completed) otomatis tersinkronisasi ke Google Sheets.
-4.  **Cloud Storage:** Gambar produk tersimpan aman di Cloudinary (tidak hilang saat deploy ulang).
-5.  **Database:** Menggunakan PostgreSQL via Supabase (Session Pooler Mode) untuk kompatibilitas cloud maksimal.
+4.  **Manual Sync (Recovery):** Tombol khsusus "Sync to Google Sheets" di halaman Admin untuk memperbaiki data Spreadsheet jika terjadi gangguan koneksi atau data hilang.
+5.  **Cloud Storage:** Gambar produk tersimpan aman di Cloudinary (tidak hilang saat deploy ulang).
+6.  **Database:** Menggunakan PostgreSQL via Supabase (Session Pooler Mode) untuk kompatibilitas cloud maksimal.
 
 ---
 
@@ -128,6 +129,7 @@ Saat membuat web service baru di Render, pastikan kamu menambahkan Environment V
 
 ## 📝 Catatan Penting untuk Pengembangan
 *   **Google Sheets:** Jika ingin mengubah status pesanan agar sinkron, pastikan `GOOGLE_SHEETS_ID` sudah benar dan email Service Account (`client_email` di JSON) sudah dijadikan **Editor** di file Spreadsheetnya.
+*   **Data Tidak Muncul di Sheet?** Jangan panik. Buka halaman **Admin > Manage Orders** lalu klik tombol hijau **"🔄 Sync to Google Sheets"**. Sistem akan otomatis menambal data yang hilang.
 *   **Gambar Produk:** Jangan simpan gambar di `public/storage` lokal saat production, karena Render akan menghapusnya saat restart. Selalu gunakan Cloudinary yang sudah terintegrasi di project ini.
 
 ---
