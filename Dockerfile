@@ -43,4 +43,4 @@ RUN php artisan storage:link
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Run using built-in server (Suitable for Capstone/Demo)
-CMD bash -c "php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+CMD bash -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
