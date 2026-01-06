@@ -1,6 +1,7 @@
 services:
   - type: web
     name: umkm-salsabila
+    plan: free
     env: docker
     envVars:
       - key: APP_KEY
