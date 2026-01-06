@@ -15,6 +15,7 @@ Route::middleware(['auth.basic'])->prefix('admin')->group(function () {
     Route::delete('/products/{product}', [AdminController::class, 'destroy'])->name('products.destroy');
 
     // Order Management
+    Route::post('/orders/sync', [OrderController::class, 'sync'])->name('admin.orders.sync');
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
@@ -42,18 +43,3 @@ Route::get('/menu', function () {
 Route::post('/cart/save', [CheckoutController::class, 'saveCart'])->name('cart.save');
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
 Route::post('/checkout', [CheckoutController::class, 'place'])->name('checkout.place');
-
-// Temporary Route to Update Admin (Delete this after use!)
-Route::get('/update-admin', function () {
-    $user = \App\Models\User::first(); // Ambil user pertama (Test User semalam)
-    if (!$user) {
-        $user = new \App\Models\User();
-    }
-
-    $user->name = 'Admin Warung';
-    $user->email = 'admin'; // Kita paksa isi 'admin' sebagai username
-    $user->password = Illuminate\Support\Facades\Hash::make('admin123');
-    $user->save();
-
-    return "Admin Updated! Username: admin, Pass: admin123";
-});
