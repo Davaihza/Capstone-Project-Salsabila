@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../node_modules/flowbite/**/*.js';
+
+@plugin 'flowbite/plugin';
+
+/* Poppins is loaded via public/fonts/poppins.css in the Blade head to avoid path issues */
+/* Import Radar (Map/Autocomplete) stylesheet provided */
+@import './radar.css';
+
+:root {
+    --olaclick-color: #006EFF;
+    --olaclick-color-12: #006EFF1F;
+    --olaclick-color-8: #006EFF14;
+    --background-color: #FCFCFD;
+    --background-color-96: #FCFCFDF5;
+    --background-color-84: #FCFCFDD6;
+    --primary-color: #006EFF;
+    --primary-color-80: #006EFFCC;
+    --primary-color-32: #006EFF52;
+    --primary-color-12: #006EFF1F;
+    --primary-color-8: #006EFF14;
+    --secondary-color: #FF8D08;
+    --font-color: #0A131F;
+    --font-color-80: #0A131FCC;
+    --font-color-70: #0A131FB3;
+    --font-color-50: #0A131F80;
+    --font-color-40: #0A131F66;
+    --font-color-36: #0A131F5C;
+    --font-color-32: #0A131F52;
+    --font-color-30: #0A131F4D;
+    --font-color-24: #0A131F3D;
+    --font-color-20: #0A131F33;
+    --font-color-16: #0A131F29;
+    --font-color-12: #0A131F1F;
+    --font-color-8: #0A131F14;
+    --font-color-4: #0A131F0A;
+    --landing-title-font: Poppins, sans-serif;
+    --landing-title-font-weight-base: 700;
+    --landing-title-text-color: #0A131F;
+    --landing-content-font: Poppins, sans-serif;
+    --landing-content-text-color-8: #0A131F14;
+    --landing-content-text-color: #0A131F;
+    --landing-body-background-color: #FCFCFD;
+    --landing-body-background-gradient-color-1: #FFF8F0;
+    --landing-body-background-gradient-color-2: #FFFFFF;
+    --landing-buttons-color: #006FFF;
+    --landing-buttons-text-color: #FFFFFF;
+    --landing-buttons-form-color: null;
+    --landing-footer-background-color: #0A131F;
+    --landing-footer-text-color: #FFFFFF;
+    --landing-footer-text-color-12: #FFFFFF1F;
+    --landing-footer-download-app-color: #22D380;
+    --product-title-font: Poppins;
+    --product-button-font-color: #FFFFFF;
+    --product-chip-discount-text-color: #FF7700;
+}
+
+@theme {
+    /* Set Poppins as the application-wide sans font */
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Base colors using provided variables and global bold Poppins typography */
+body {
+    color: var(--font-color);
+    background-color: var(--background-color);
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-weight: 700;
+}
