@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\OrderController;
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth.basic'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/menu', [AdminController::class, 'menu'])->name('admin.menu');
     Route::get('/report/download', [AdminController::class, 'downloadReport'])->name('admin.report.download');

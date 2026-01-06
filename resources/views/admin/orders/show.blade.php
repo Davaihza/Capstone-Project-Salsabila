@@ -91,6 +91,8 @@
                         <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Processing
+                            </option>
                             <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
                             <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                         </select>
