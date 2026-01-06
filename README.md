@@ -1,78 +1,134 @@
-# Capstone Project - Salsabila (Food Ordering System)
+# Warung Salsabila - Digital Ordering System 🍲
 
-## Deskripsi
-Aplikasi ini adalah sistem pemesanan makanan berbasis web yang dibangun menggunakan framework **Laravel**. Proyek ini ditujukan untuk mempermudah pengelolaan menu, pesanan, dan laporan penjualan bagi restoran atau kafe.
+**Capstone Project Application**
+Sistem pemesanan makanan digital untuk UMKM Warung Salsabila yang terintegrasi dengan Google Sheets sebagai log transaksi dan Supabase sebagai database cloud.
 
-## Fitur Utama
+[**🌐 LIHAT WEBSITE LIVE DI SINI**](https://umkm-salsabila.onrender.com)
 
-### Admin
-- **Dashboard**: Melihat ringkasan penjualan dan status terkini.
-- **Manajemen Menu**: Menambah, mengedit, dan menghapus item menu (Makanan, Minuman, Snack).
-- **Manajemen Pesanan**: Melihat daftar pesanan masuk dan memperbarui status pesanan.
-- **Laporan**: Mengunduh laporan penjualan dalam format PDF.
+---
 
-### Pelanggan (User)
-- **Lihat Menu**: Menjelajahi daftar menu berdasarkan kategori (Makanan, Minuman, Snack).
-- **Keranjang Belanja**: Menambahkan item ke keranjang sebelum checkout.
-- **Checkout**: Melakukan pemesanan.
+## 🔥 Fitur Utama
+1.  **User Ordering (Tanpa Login):** Pelanggan bisa scan QR / buka link, pilih menu, dan pesan langsung tanpa harus mendaftar. (Ala Self-Service Gacoan).
+2.  **Admin Dashboard (Secure):** Halaman khusus admin untuk mengatur menu, melihat pesanan masuk, dan update status pesanan.
+3.  **Real-time Status Sync:** Update status di Admin (Pending -> Processing -> Completed) otomatis tersinkronisasi ke Google Sheets.
+4.  **Cloud Storage:** Gambar produk tersimpan aman di Cloudinary (tidak hilang saat deploy ulang).
+5.  **Database:** Menggunakan PostgreSQL via Supabase (Session Pooler Mode) untuk kompatibilitas cloud maksimal.
 
-## Teknologi yang Digunakan
-- **Backend**: Laravel Framework 12.x (PHP ^8.2)
-- **Frontend**: Blade Templates, Tailwind CSS, Flowbite
-- **Database**: MySQL
-- **Dependencies Utama**: 
-  - `barryvdh/laravel-dompdf` (untuk generate PDF)
-  - `tailwindcss` & `flowbite` (untuk styling)
+---
 
-## Cara Instalasi dan Menjalankan Project
+## 🛠️ Tech Stack
+*   **Framework:** Laravel (PHP)
+*   **Database:** PostgreSQL (Supabase)
+*   **Storage:** Cloudinary Filesystem
+*   **External Service:** Google Sheets API
+*   **Frontend:** Blade Templates + Tailwind CSS (via CDN/Vite)
+*   **Deployment:** Render (Docker Container)
 
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/Davaihza/Capstone-Project-Salsabila.git
-   cd Capstone-Project-Salsabila
-   ```
+---
 
-2. **Install Dependencies**
-   ```bash
-   composer install
-   npm install
-   ```
+## 🔑 Akses Admin (PENTING)
+Halaman admin dilindungi oleh **HTTP Basic Auth** (Pop-up Keamanan Browser).
 
-3. **Konfigurasi Environment**
-   - Salin file `.env.example` menjadi `.env`
-     ```bash
-     cp .env.example .env
-     ```
-   - Atur konfigurasi database di file `.env` (DB_DATABASE, DB_USERNAME, dll).
+*   **URL:** `https://umkm-salsabila.onrender.com/admin`
+*   **Username (Email):** `test@example.com`
+*   **Password:** `password`
 
-4. **Generate Key & Migrasi Database**
-   ```bash
-   php artisan key:generate
-   php artisan migrate
-   ```
+*(Akun ini dibuat otomatis saat seeding database)*
 
-5. **Jalankan Aplikasi**
-   - Menjalankan server development:
-     ```bash
-     php artisan serve
-     ```
-   - Compile aset frontend (jika perlu):
-     ```bash
-     npm run dev
-     ```
+---
 
-## Route List
-- **User**:
-  - `/` & `/menu`: Halaman menu utama
-  - `/checkout`: Halaman checkout
-- **Admin** (`/admin`):
-  - `/`: Dashboard Admin
-  - `/menu`: Manajemen Menu
-  - `/orders`: Manajemen Pesanan
-  - `/report/download`: Download Laporan
+## ⚙️ Cara Install & Menjalankan di Local
+Ikuti langkah ini jika ingin menjalankan project di laptop sendiri (Development).
 
-## Struktur Folder
-- `app/Http/Controllers`: Logika aplikasi (AdminController, CheckoutController, OrderController).
-- `database/migrations`: Struktur tabel database.
-- `resources/views`: Tampilan antarmuka (Blade templates).
-- `routes/web.php`: Definisi rute aplikasi.
+### 1. Persiapan
+Pastikan sudah install:
+*   PHP >= 8.2
+*   Composer
+*   Node.js
+*   Database (PostgreSQL / MySQL XAMPP)
+
+### 2. Setup Project
+```bash
+# Clone repository
+git clone https://github.com/Davaihza/Capstone-Project-Salsabila.git
+
+# Masuk folder
+cd Capstone-Project-Salsabila
+
+# Install dependency PHP
+composer install
+
+# Install dependency Frontend
+npm install && npm run build
+```
+
+### 3. Konfigurasi Environment (.env)
+Copy file `.env.example` menjadi `.env`:
+```bash
+cp .env.example .env
+```
+Lalu edit file `.env` dan sesuaikan:
+```env
+APP_NAME="Warung Salsabila"
+APP_ENV=local
+APP_KEY= # Generate pakai command di bawah
+APP_URL=http://localhost:8000
+
+# Database (Sesuaikan dengan DB lokal/Supabase kamu)
+DB_CONNECTION=pgsql
+DB_HOST=aws-0-ap-southeast-1.pooler.supabase.com
+...
+
+# Cloudinary (Untuk Upload Gambar)
+CLOUDINARY_URL=cloudinary://...
+
+# Google Sheets (Untuk Log Pesanan)
+GOOGLE_SHEETS_ID=ID_SPREADSHEET_KAMU
+GOOGLE_SHEETS_CREDENTIALS=PATH_TO_JSON_FILE
+```
+
+### 4. Setup Database
+```bash
+# Generate Key
+php artisan key:generate
+
+# Migrasi Tabel & Isi Data Awal (Seeding)
+php artisan migrate --seed
+```
+
+### 5. Jalankan Server
+```bash
+php artisan serve
+```
+Buka browser di `http://localhost:8000`.
+
+---
+
+## ☁️ Panduan Deployment (Render.com)
+Project ini sudah dikonfigurasi menggunakan **Dockerfile** untuk deployment otomatis di Render (Free Tier).
+
+### Setting Environment Variables di Render
+Saat membuat web service baru di Render, pastikan kamu menambahkan Environment Variables berikut di menu **"Environment"**:
+
+| Variable | Value (Contoh) | Catatan |
+| :--- | :--- | :--- |
+| `APP_KEY` | `base64:....` | Copy dari .env lokal |
+| `APP_URL` | `https://nm-app.onrender.com` | URL Render kamu |
+| `ASSET_URL` | `https://nm-app.onrender.com` | **PENTING:** Supaya CSS/Gambar tidak broken (HTTPS) |
+| `DB_CONNECTION` | `pgsql` | |
+| `DB_HOST` | `aws-0...pooler.supabase.com` | Pakai **Session Pooler** (Port 5432/6543) |
+| `DB_DATABASE` | `postgres` | |
+| `DB_USERNAME` | `postgres.xxx` | |
+| `DB_PASSWORD` | `rahasia` | |
+| `CLOUDINARY_URL` | `cloudinary://...` | Dari Dashboard Cloudinary |
+| `GOOGLE_SHEETS_ID`| `151D...` | ID Sheet dari URL Browser |
+| `GOOGLE_SHEETS_CREDENTIALS` | `{ "type": "service_account", ... }` | Copy **SELURUH ISI** file JSON kredensial ke sini |
+
+---
+
+## 📝 Catatan Penting untuk Pengembangan
+*   **Google Sheets:** Jika ingin mengubah status pesanan agar sinkron, pastikan `GOOGLE_SHEETS_ID` sudah benar dan email Service Account (`client_email` di JSON) sudah dijadikan **Editor** di file Spreadsheetnya.
+*   **Gambar Produk:** Jangan simpan gambar di `public/storage` lokal saat production, karena Render akan menghapusnya saat restart. Selalu gunakan Cloudinary yang sudah terintegrasi di project ini.
+
+---
+**Capstone Project 2026** - Warung Salsabila Digitalization
