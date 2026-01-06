@@ -30,10 +30,10 @@ Sistem pemesanan makanan digital untuk UMKM Warung Salsabila yang terintegrasi d
 Halaman admin dilindungi oleh **HTTP Basic Auth** (Pop-up Keamanan Browser).
 
 *   **URL:** `https://umkm-salsabila.onrender.com/admin`
-*   **Username (Email):** `test@example.com`
-*   **Password:** `password`
+*   **Username:** `admin`
+*   **Password:** `admin123`
 
-*(Akun ini dibuat otomatis saat seeding database)*
+*(Pastikan sudah menjalankan update user via route /update-admin jika belum berubah)*
 
 ---
 
